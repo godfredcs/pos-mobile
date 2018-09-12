@@ -1,15 +1,22 @@
 import {createStackNavigator, createDrawerNavigator} from 'react-navigation';
-import {FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons';
+import {FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Foundation} from '@expo/vector-icons';
 import Colors from '../constants/Colors';
 import {drawerScreenNavigationOptions, stackScreenOptions, drawerStackNavigationOptions, drawerContentComponents} from './config';
 
 import {
     LoginScreen,
+    LogoutScreen,
+    AccountScreen,
+
     DashboardScreen,
+    ItemScreen,
+    SaleScreen,
     CreditScreen,
     FootballScreen,
     MobileMoneyScreen,
     JackpotScreen,
+
+    AboutScreen
 } from '../modules';
 
 export default createStackNavigator({
@@ -23,6 +30,30 @@ export default createStackNavigator({
                     navigationOptions: ({navigation}) => drawerStackNavigationOptions(navigation, 'Dashboard', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Dashboard', 'view-dashboard', MaterialCommunityIcons)
+            },
+            ItemScreen: {
+                screen: createStackNavigator({
+                    Home: {
+                        screen: ItemScreen
+                    }
+                }, {
+                    navigationOptions: ({
+                        navigation
+                    }) => drawerStackNavigationOptions(navigation, 'Items', Entypo)
+                }),
+                navigationOptions: drawerScreenNavigationOptions('Items', 'archive', Entypo)
+            },
+            SaleScreen: {
+                screen: createStackNavigator({
+                    Home: {
+                        screen: SaleScreen
+                    }
+                }, {
+                    navigationOptions: ({
+                        navigation
+                    }) => drawerStackNavigationOptions(navigation, 'Sales', Entypo)
+                }),
+                navigationOptions: drawerScreenNavigationOptions('Sales', 'burst-sale', Foundation)
             },
             CreditScreen: {
                 screen: createStackNavigator({
@@ -72,6 +103,34 @@ export default createStackNavigator({
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Mobile Money', 'cash-multiple', MaterialCommunityIcons)
             },
+            AccountScreen: {
+                screen: createStackNavigator({
+                    Home: {
+                        screen: AccountScreen
+                    }
+                }, {
+                    navigationOptions: ({
+                        navigation
+                    }) => drawerStackNavigationOptions(navigation, 'Account', Entypo)
+                }),
+                navigationOptions: drawerScreenNavigationOptions('Account', 'user', FontAwesome)
+            },
+            AboutScreen: {
+                screen: createStackNavigator({
+                    Home: {
+                        screen: AboutScreen
+                    }
+                }, {
+                    navigationOptions: ({
+                        navigation
+                    }) => drawerStackNavigationOptions(navigation, 'About', Entypo)
+                }),
+                navigationOptions: drawerScreenNavigationOptions('About', 'info-with-circle', Entypo)
+            },
+            LogoutScreen: {
+                screen: LogoutScreen,
+                navigationOptions: drawerScreenNavigationOptions('Log out', 'logout', MaterialCommunityIcons)
+            }
         }, {
             contentComponent: props => drawerContentComponents(props),
             contentOptions: {
