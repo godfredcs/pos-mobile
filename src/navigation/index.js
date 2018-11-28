@@ -1,20 +1,24 @@
-import {createStackNavigator, createDrawerNavigator} from 'react-navigation';
-import {FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Foundation} from '@expo/vector-icons';
-import Colors from '../constants/Colors';
-import {drawerScreenNavigationOptions, stackScreenOptions, drawerStackNavigationOptions, drawerContentComponents} from './config';
+import { createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation';
+import { FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Foundation } from '@expo/vector-icons';
+import {
+    drawerContentComponents,
+    drawerStackNavigationOptions,
+    drawerScreenNavigationOptions
+} from './config';
+import { Colors } from '../globals';
 
 import {
     LoginScreen,
     LogoutScreen,
     AccountScreen,
 
-    DashboardScreen,
     ItemScreen,
     SaleScreen,
     CreditScreen,
-    FootballScreen,
-    MobileMoneyScreen,
     JackpotScreen,
+    FootballScreen,
+    DashboardScreen,
+    MobileMoneyScreen,
 
     AboutScreen
 } from '../modules';
@@ -27,7 +31,7 @@ export default createStackNavigator({
                 screen: createStackNavigator({
                     Home: {screen: DashboardScreen}
                 }, {
-                    navigationOptions: ({navigation}) => drawerStackNavigationOptions(navigation, 'Dashboard', Entypo)
+                    navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Dashboard', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Dashboard', 'view-dashboard', MaterialCommunityIcons)
             },
@@ -56,16 +60,29 @@ export default createStackNavigator({
                 navigationOptions: drawerScreenNavigationOptions('Sales', 'burst-sale', Foundation)
             },
             CreditScreen: {
-                screen: createStackNavigator({
-                    Home: {
-                        screen: CreditScreen
+                screen: createBottomTabNavigator({
+                    Cards: {
+                        screen: createStackNavigator({
+                            Home: {
+                                screen: CreditScreen
+                            }
+                        }, {
+                            navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Credit Cards', Entypo)
+                        })
+                    },
+                    Transfers: {
+                        screen: createStackNavigator({
+                            Home: {
+                                screen: CreditScreen
+                            }
+                        }, {
+                            navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Credit Transfers', Entypo)
+                        })
                     }
                 }, {
-                    navigationOptions: ({
-                        navigation
-                    }) => drawerStackNavigationOptions(navigation, 'Credit Cards', Entypo)
+
                 }),
-                navigationOptions: drawerScreenNavigationOptions('Credit Cards', 'cards', MaterialCommunityIcons)
+                navigationOptions: drawerScreenNavigationOptions('Credits', 'cards', MaterialCommunityIcons)
             },
             FootballScreen: {
                 screen: createStackNavigator({

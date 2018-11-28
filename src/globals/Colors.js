@@ -15,4 +15,5 @@ export default {
     tertiary: '#FFFFFF',
     accent: '#2196F3',
     radiant: '#1A237E',
+    danger: '#Ef5350'
 };

@@ -1,6 +1,8 @@
 import React from 'react';
-import {View, Text, StatusBar} from 'react-native';
-import {connect} from 'react-redux';
+import { View, Text, StatusBar } from 'react-native';
+import { connect } from 'react-redux';
+import { AddButton } from '../../../components';
+import { Styles } from '../../../globals';
 
 class DashboardScreen extends React.Component {
     componentDidMount() {
@@ -9,8 +11,9 @@ class DashboardScreen extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={ Styles.container }>
                 <Text>This is the DashboardScreen</Text>
+
             </View>
         );
     }
