@@ -1,22 +1,22 @@
-import React from 'react';
-import {KeyboardAvoidingView, Keyboard, ScrollView, View, Text, TouchableWithoutFeedback} from 'react-native';
-import {connect} from 'react-redux';
-import {TextField} from 'react-native-material-textfield';
+import React, { Component } from 'react';
+import { KeyboardAvoidingView, Keyboard, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
+import { connect } from 'react-redux';
+import { TextField } from 'react-native-material-textfield';
 
-import {emailChanged, passwordChanged} from '../_store/AuthActions';
+import { emailChanged, passwordChanged } from '../_store/Actions';
 
-class AccountScreen extends React.Component {
+class AccountScreen extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={{flex: 1}} behavior="padding" enabled>
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
                 <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-                    <ScrollView style={{flex: 1, padding: 40}}>
+                    <ScrollView style={{ flex: 1, padding: 40 }}>
                         <TextField
-                            editable={false}
+                            editable={ false }
                             label="Email"
-                            value={this.props.email}
-                            onChangeText={value => this.props.emailChanged(value)}
+                            value={ this.props.email }
+                            onChangeText={ value => this.props.emailChanged(value) }
                         />
                     </ScrollView>
                 </TouchableWithoutFeedback>
@@ -26,8 +26,8 @@ class AccountScreen extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const {email, password} = state.auth;
-    return {email, password};
+    const { email, password } = state.auth;
+    return { email, password };
 };
 
-export default connect(mapStateToProps, {emailChanged, passwordChanged})(AccountScreen);
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(AccountScreen);

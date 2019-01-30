@@ -11,7 +11,7 @@ import JackpotScreen from './Jackpot/_screens/JackpotScreen';
 import MobileMoneyScreen from './MobileMoney/_screens/MobileMoneyScreen';
 import AboutScreen from './Auth/_screens/AboutScreen';
 
-import AuthReducer from './Auth/_store/AuthReducer';
+import AuthReducer from './Auth/_store/Reducer';
 
 export {
     LoginScreen,

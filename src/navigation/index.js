@@ -132,7 +132,7 @@ export default createStackNavigator({
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Account', 'user', FontAwesome)
             },
-            AboutScreen: {
+            /* AboutScreen: {
                 screen: createStackNavigator({
                     Home: {
                         screen: AboutScreen
@@ -143,7 +143,7 @@ export default createStackNavigator({
                     }) => drawerStackNavigationOptions(navigation, 'About', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('About', 'info-with-circle', Entypo)
-            },
+            }, */
             LogoutScreen: {
                 screen: LogoutScreen,
                 navigationOptions: drawerScreenNavigationOptions('Log out', 'logout', MaterialCommunityIcons)
