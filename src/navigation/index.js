@@ -16,12 +16,11 @@ import {
     ItemScreen,
     SaleScreen,
     CreditScreen,
+    TransferScreen,
     JackpotScreen,
     FootballScreen,
     DashboardScreen,
-    MobileMoneyScreen,
-
-    AboutScreen
+    MobileMoneyScreen
 } from '../modules';
 
 export default createStackNavigator({
@@ -30,7 +29,7 @@ export default createStackNavigator({
         screen: createDrawerNavigator({
             DashboardScreen: {
                 screen: createStackNavigator({
-                    Home: {screen: DashboardScreen}
+                    Home: { screen: DashboardScreen }
                 }, {
                     navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Dashboard', Entypo)
                 }),
@@ -38,25 +37,17 @@ export default createStackNavigator({
             },
             ItemScreen: {
                 screen: createStackNavigator({
-                    Home: {
-                        screen: ItemScreen
-                    }
+                    Home: { screen: ItemScreen }
                 }, {
-                    navigationOptions: ({
-                        navigation
-                    }) => drawerStackNavigationOptions(navigation, 'Items', Entypo)
+                    navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Items', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Items', 'archive', Entypo)
             },
             SaleScreen: {
                 screen: createStackNavigator({
-                    Home: {
-                        screen: SaleScreen
-                    }
+                    Home: { screen: SaleScreen }
                 }, {
-                    navigationOptions: ({
-                        navigation
-                    }) => drawerStackNavigationOptions(navigation, 'Sales', Entypo)
+                    navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Sales', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Sales', 'burst-sale', Foundation)
             },
@@ -64,9 +55,7 @@ export default createStackNavigator({
                 screen: createBottomTabNavigator({
                     Cards: {
                         screen: createStackNavigator({
-                            Home: {
-                                screen: CreditScreen
-                            }
+                            Home: { screen: CreditScreen }
                         }, {
                             navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Credit Cards', Entypo)
                         }),
@@ -78,9 +67,7 @@ export default createStackNavigator({
                     },
                     Transfers: {
                         screen: createStackNavigator({
-                            Home: {
-                                screen: CreditScreen
-                            }
+                            Home: { screen: TransferScreen }
                         }, {
                             navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Credit Transfers', Entypo)
                         }),
@@ -97,64 +84,36 @@ export default createStackNavigator({
             },
             FootballScreen: {
                 screen: createStackNavigator({
-                    Home: {
-                        screen: FootballScreen
-                    }
+                    Home: { screen: FootballScreen }
                 }, {
-                    navigationOptions: ({
-                        navigation
-                    }) => drawerStackNavigationOptions(navigation, 'Football', Entypo)
+                    navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Football', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Football', 'soccer-ball-o', FontAwesome)
             },
             JackpotScreen: {
                 screen: createStackNavigator({
-                    Home: {
-                        screen: JackpotScreen
-                    }
+                    Home: { screen: JackpotScreen }
                 }, {
-                    navigationOptions: ({
-                        navigation
-                    }) => drawerStackNavigationOptions(navigation, 'Jackpot', Entypo)
+                    navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Jackpot', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Jackpot', 'casino', MaterialIcons)
             },
             MobileMoneyScreen: {
                 screen: createStackNavigator({
-                    Home: {
-                        screen: MobileMoneyScreen
-                    }
+                    Home: { screen: MobileMoneyScreen }
                 }, {
-                    navigationOptions: ({
-                        navigation
-                    }) => drawerStackNavigationOptions(navigation, 'Mobile Money', Entypo)
+                    navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Mobile Money', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Mobile Money', 'cash-multiple', MaterialCommunityIcons)
             },
             AccountScreen: {
                 screen: createStackNavigator({
-                    Home: {
-                        screen: AccountScreen
-                    }
+                    Home: { screen: AccountScreen }
                 }, {
-                    navigationOptions: ({
-                        navigation
-                    }) => drawerStackNavigationOptions(navigation, 'Account', Entypo)
+                    navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Account', Entypo)
                 }),
                 navigationOptions: drawerScreenNavigationOptions('Account', 'user', FontAwesome)
             },
-            /* AboutScreen: {
-                screen: createStackNavigator({
-                    Home: {
-                        screen: AboutScreen
-                    }
-                }, {
-                    navigationOptions: ({
-                        navigation
-                    }) => drawerStackNavigationOptions(navigation, 'About', Entypo)
-                }),
-                navigationOptions: drawerScreenNavigationOptions('About', 'info-with-circle', Entypo)
-            }, */
             LogoutScreen: {
                 screen: LogoutScreen,
                 navigationOptions: drawerScreenNavigationOptions('Log out', 'logout', MaterialCommunityIcons)

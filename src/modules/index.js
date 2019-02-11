@@ -6,6 +6,7 @@ import DashboardScreen from './Dashboard/_screens/DashboardScreen';
 import ItemScreen from './Items/_screens/ItemScreen';
 import SaleScreen from './Sales/_screens/SaleScreen';
 import CreditScreen from './Credit/_screens/CreditScreen';
+import TransferScreen from './Credit/_screens/TransferScreen';
 import FootballScreen from './Football/_screens/FootballScreen';
 import JackpotScreen from './Jackpot/_screens/JackpotScreen';
 import MobileMoneyScreen from './MobileMoney/_screens/MobileMoneyScreen';
@@ -22,6 +23,7 @@ export {
     ItemScreen,
     SaleScreen,
     CreditScreen,
+    TransferScreen,
     FootballScreen,
     JackpotScreen,
     MobileMoneyScreen,
