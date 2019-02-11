@@ -10,7 +10,6 @@ import TransferScreen from './Credit/_screens/TransferScreen';
 import FootballScreen from './Football/_screens/FootballScreen';
 import JackpotScreen from './Jackpot/_screens/JackpotScreen';
 import MobileMoneyScreen from './MobileMoney/_screens/MobileMoneyScreen';
-import AboutScreen from './Auth/_screens/AboutScreen';
 
 import AuthReducer from './Auth/_store/Reducer';
 
@@ -27,7 +26,6 @@ export {
     FootballScreen,
     JackpotScreen,
     MobileMoneyScreen,
-    AboutScreen,
 
     AuthReducer
 };

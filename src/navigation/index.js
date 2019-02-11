@@ -1,11 +1,7 @@
 import React from 'react';
 import { createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation';
 import { FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Foundation } from '@expo/vector-icons';
-import {
-    drawerContentComponents,
-    drawerStackNavigationOptions,
-    drawerScreenNavigationOptions
-} from './config';
+import { drawerContentComponents, drawerStackNavigationOptions, drawerScreenNavigationOptions } from './config';
 import { Colors } from '../globals';
 
 import {
