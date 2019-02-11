@@ -25,7 +25,6 @@ class SaleScreen extends Component {
     render() {
         return (
             <View style={ Styles.container }>
-                <Text>This is the SaleScreen</Text>
 
                 <AddButton
                     onPress={ this.showAddSaleModal }

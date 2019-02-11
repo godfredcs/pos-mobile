@@ -24,7 +24,7 @@ class ItemScreen extends Component {
     render() {
         return (
             <View style={ Styles.container }>
-                <Text>This is the ItemScreen</Text>
+
                 <AddButton
                     onPress={ this.showAddItemModal }
                     style={{ position: 'absolute', right: 20, bottom: 20 }} />

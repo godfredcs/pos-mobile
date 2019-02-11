@@ -12,7 +12,6 @@ class DashboardScreen extends React.Component {
     render() {
         return (
             <View style={ Styles.container }>
-                <Text>This is the DashboardScreen</Text>
 
             </View>
         );

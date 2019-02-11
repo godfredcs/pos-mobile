@@ -1,3 +1,4 @@
+import React from 'react';
 import { createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation';
 import { FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Foundation } from '@expo/vector-icons';
 import {
@@ -68,7 +69,12 @@ export default createStackNavigator({
                             }
                         }, {
                             navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Credit Cards', Entypo)
-                        })
+                        }),
+                        navigationOptions: {
+                            tabBarIcon: ({ tintColor }) => (
+                                <MaterialCommunityIcons name="cards" size={ 24 } color={ tintColor } />
+                            )
+                        }
                     },
                     Transfers: {
                         screen: createStackNavigator({
@@ -77,7 +83,12 @@ export default createStackNavigator({
                             }
                         }, {
                             navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Credit Transfers', Entypo)
-                        })
+                        }),
+                        navigationOptions: {
+                            tabBarIcon: ({ tintColor }) => (
+                                <MaterialCommunityIcons name="transfer" size={ 24 } color={ tintColor } />
+                            )
+                        }
                     }
                 }, {
 

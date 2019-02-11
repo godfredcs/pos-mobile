@@ -12,7 +12,6 @@ class CreditScreen extends Component {
     render() {
         return (
             <View style={ Styles.container }>
-                <Text>This is the CreditScreen</Text>
 
                 <AddButton
                     onPress={() => console.log('this is lit')}

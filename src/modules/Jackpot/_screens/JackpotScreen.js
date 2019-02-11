@@ -25,7 +25,6 @@ class JackpotScreen extends Component {
     render() {
         return (
             <View style={ Styles.container }>
-                <Text>This is the JackpotScreen</Text>
 
                 <AddButton
                     onPress={ this.showAddJackpotModal }

@@ -25,7 +25,6 @@ class MobileMoneyScreen extends Component {
     render() {
         return (
             <View style={ Styles.container }>
-                <Text>This is the MobileMoneyScreen</Text>
 
                 <AddButton
                     onPress={ this.showAddMobileMoneyModal }
