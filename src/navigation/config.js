@@ -1,8 +1,9 @@
 import React from 'react';
-import { TouchableOpacity, View, ScrollView, Text, Platform } from 'react-native';
+import { TouchableOpacity, View, ScrollView, Text, Platform, Image } from 'react-native';
 import { DrawerItems } from 'react-navigation';
 import { Colors } from '../globals';
 
+const ICON = require('../../assets/icon.png');
 const ISIOS = Platform.OS === 'ios';
 
 export const stackScreenOptions = (navigation, title) => {
@@ -40,9 +41,7 @@ export const drawerScreenNavigationOptions = (drawerLabel, iconName, IconFamily,
 export const drawerContentComponents = props => (
     <View style={{ flex: 1 }}>
         <View style={{ backgroundColor: Colors.accent, paddingVertical: 50, alignItems: 'center' }}>
-            <Text style={{ color: Colors.tertiary, paddingTop: 10, fontSize: 50, fontWeight: '600' }}>
-                POS
-            </Text>
+            <Image source={ ICON } resizeMode="contain" style={{ width: 150, height: 150 }} />
         </View>
         <ScrollView style={{ flex: 1 }}>
             <DrawerItems { ...props } />
