@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
 import { emailChanged, passwordChanged, attemptUserLogin } from '../_store/Actions';
 import { Styles } from '../../../globals';
-import { CustomButton } from '../../../components';
+import { CustomButton, Spinner } from '../../../components';
 
 const ICON = require('../../../../assets/icon.png');
 
@@ -49,11 +49,17 @@ class LoginScreen extends Component {
                                 onChangeText={ value => this.props.passwordChanged(value) }
                             />
 
-                            <CustomButton
-                                title="Login"
-                                style={{ marginVertical: 20 }}
-                                onPress={ this.attemptUserLogin }
-                            />
+                            <View>
+                                {
+                                    this.props.attempting_user_login
+                                        ? <Spinner />
+                                        : <CustomButton
+                                            title="Login"
+                                            style={{ marginVertical: 20 }}
+                                            onPress={ this.attemptUserLogin }
+                                        />
+                                }
+                            </View>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
@@ -63,8 +69,8 @@ class LoginScreen extends Component {
 }
 
 const mapStateToProps = state => {
-    const { email, password } = state.auth;
-    return { email, password };
+    const { email, password, attempting_user_login } = state.auth;
+    return { email, password, attempting_user_login };
 };
 
 export default connect(mapStateToProps, { emailChanged, passwordChanged, attemptUserLogin })(LoginScreen);
