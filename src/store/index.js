@@ -4,7 +4,16 @@ import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 //import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
-import {AuthReducer} from '../modules';
+import {
+    AuthReducer,
+    ItemReducer,
+    SaleReducer,
+    CreditReducer,
+    JackpotReducer,
+    FootballReducer,
+    DashboardReducer,
+    MobileMoneyReducer
+} from '../modules';
 
 const persistConfig = {
     key: 'root',
@@ -16,6 +25,13 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     auth: AuthReducer,
+    items: ItemReducer,
+    sales: SaleReducer,
+    credits: CreditReducer,
+    jackpots: JackpotReducer,
+    footballs: FootballReducer,
+    dashboards: DashboardReducer,
+    momos: MobileMoneyReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
