@@ -1,4 +1,5 @@
 import Auth from './Service';
+import { AsyncStorage } from 'react-native';
 import {
     EMAIL_CHANGED, PASSWORD_CHANGED, FIRSTNAME_CHANGED, LASTNAME_CHANGED, USER_PHOTO_CHANGED, PASSWORD_CONFIRMATION_CHANGED,
     ATTEMPT_USER_LOGIN, USER_LOGIN_FAIL, USER_LOGIN_SUCCESS,
@@ -25,6 +26,12 @@ export const attemptUserLogin = (data, callback) => async dispatch => {
         const user = await Auth.login(data);
 
         if (user) {
+            console.log('this is the user data: ', user);
+
+            if (user.api_token) {
+                await AsyncStorage.setItem('access_token', user.api_token);
+            }
+
             dispatch({ type: USER_LOGIN_SUCCESS, payload: user });
 
             if (callback) {
@@ -50,6 +57,12 @@ export const attemptUserRegister = (data, callback) => async dispatch => {
         const user = await Auth.register(data);
 
         if (user) {
+            console.log('this is the user data: ', user);
+
+            if (user.api_token) {
+                await AsyncStorage.setItem('access_token', user.api_token);
+            }
+
             dispatch({ type: USER_REGISTER_SUCCESS, payload: user });
 
             if (callback) {
