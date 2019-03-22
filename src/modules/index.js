@@ -3,6 +3,7 @@ import LogoutScreen from './Auth/_screens/LogoutScreen';
 import AccountScreen from './Auth/_screens/AccountScreen';
 
 import ItemScreen from './Items/_screens/ItemScreen';
+import ItemViewScreen from './Items/_screens/ItemViewScreen';
 import SaleScreen from './Sales/_screens/SaleScreen';
 import CreditScreen from './Credit/_screens/CreditScreen';
 import JackpotScreen from './Jackpot/_screens/JackpotScreen';
@@ -26,6 +27,7 @@ export {
     AccountScreen,
 
     ItemScreen,
+    ItemViewScreen,
     SaleScreen,
     CreditScreen,
     JackpotScreen,
