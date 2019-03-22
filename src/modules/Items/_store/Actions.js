@@ -1,8 +1,38 @@
 import Item from './service';
 import {
     ATTEMPT_GETTING_ITEMS, GET_ITEMS_SUCCESS, GET_ITEMS_FAIL,
-    ATTEMPT_GETTING_ITEM, GET_ITEM_SUCCESS, GET_ITEM_FAIL
+    ATTEMPT_GETTING_ITEM, GET_ITEM_SUCCESS, GET_ITEM_FAIL,
+    ITEM_SELECTED,
+    ITEM_NAME_CHANGED, ITEM_QUANTITY_CHANGED, ITEM_UNIT_PRICE_CHANGED, ITEM_WHOLE_PRICE_CHANGED
 } from './Types';
+
+/**
+ * Action Creator - For taking item name
+ *
+ * @param {String} payload
+ */
+export const itemNameChanged = payload => ({ type: ITEM_NAME_CHANGED, payload });
+
+/**
+ * Action Creator - For taking item quantity
+ *
+ * @param {Number} payload
+ */
+export const itemQuantityChanged = payload => ({ type: ITEM_QUANTITY_CHANGED, payload });
+
+/**
+ * Action Creator - For taking item unit price
+ *
+ * @param {Number} payload
+ */
+export const itemUnitPriceChanged = payload => ({ type: ITEM_UNIT_PRICE_CHANGED, payload });
+
+/**
+ * Action Creator - For taking item whole price
+ *
+ * @param {Number} payload
+ */
+export const itemWholePriceChanged = payload => ({ type: ITEM_WHOLE_PRICE_CHANGED, payload });
 
 /**
  * Item Action - Get all items
@@ -43,3 +73,10 @@ export const getItem = id => async dispatch => {
         console.log('this is the error from getting specified item: ', error);
     }
 }
+
+/**
+ * Item Action - Select an item
+ *
+ * @param {Object} item
+ */
+export const selectItem = item => ({ type: ITEM_SELECTED, payload: item });
