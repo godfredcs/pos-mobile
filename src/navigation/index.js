@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation';
 import { FontAwesome, Entypo, MaterialCommunityIcons, MaterialIcons, Foundation } from '@expo/vector-icons';
-import { drawerContentComponents, drawerStackNavigationOptions, drawerScreenNavigationOptions } from './config';
+import { drawerContentComponents, drawerStackNavigationOptions, drawerScreenNavigationOptions, stackScreenOptions } from './config';
 import { Colors } from '../globals';
 
 import {
@@ -10,6 +10,7 @@ import {
     AccountScreen,
 
     ItemScreen,
+    ItemViewScreen,
     SaleScreen,
     CreditScreen,
     TransferScreen,
@@ -33,7 +34,11 @@ export default createStackNavigator({
             },
             ItemScreen: {
                 screen: createStackNavigator({
-                    Home: { screen: ItemScreen }
+                    Home: { screen: ItemScreen },
+                    ItemViewScreen: {
+                        screen: ItemViewScreen,
+                        navigationOptions: ({ navigation }) => stackScreenOptions(navigation, 'Item')
+                    }
                 }, {
                     navigationOptions: ({ navigation }) => drawerStackNavigationOptions(navigation, 'Items', Entypo)
                 }),
