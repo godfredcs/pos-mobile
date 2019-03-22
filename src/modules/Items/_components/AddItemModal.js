@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import { CommonInput } from '../../../components';
 import { Colors } from '../../../globals';
 
@@ -20,6 +21,9 @@ const AddItemModal = ({ visible, close }) => (
                     <CommonInput
                         label="Name" />
 
+					<CommonInput
+						label="Quantity" />
+
                     <CommonInput
                         label="Unit price" />
 
@@ -36,7 +40,7 @@ const AddItemModal = ({ visible, close }) => (
 					</TouchableOpacity>
 
 					<TouchableOpacity
-                        onPress={ close }
+                        onPress={ onAddItem }
                         style={[styles.buttons, { backgroundColor: Colors.accent, borderBottomRightRadius: 5 }]}>
 
 						<Text style={ styles.buttonText }>ADD</Text>
@@ -77,4 +81,9 @@ const styles = {
 	}
 };
 
-export default AddItemModal;
+const mapStateToProps = state => {
+	const { item_name, item_quantity, item_unit_price, item_whole_price } = state.items;
+	return { item_name, item_quantity, item_unit_price, item_whole_price };
+};
+
+export default connect(mapStateToProps, {  })(AddItemModal);
