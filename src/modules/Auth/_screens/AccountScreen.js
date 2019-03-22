@@ -2,20 +2,46 @@ import React, { Component } from 'react';
 import { KeyboardAvoidingView, Keyboard, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
-
+import { Styles } from '../../../globals';
 import { emailChanged, passwordChanged } from '../_store/Actions';
 
 class AccountScreen extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
+            <KeyboardAvoidingView style={ Styles.container } behavior="padding" enabled>
                 <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-                    <ScrollView style={{ flex: 1, padding: 40 }}>
+                    <ScrollView style={{ flex: 1, padding: 20 }}>
+                        <TextField
+                            editable={ false }
+                            label="Role"
+                            value={ this.props.user.role.name }
+                        />
+
                         <TextField
                             editable={ false }
                             label="Email"
-                            value={ this.props.email }
+                            value={ this.props.user.email }
+                        />
+
+                        <TextField
+                            editable={ false }
+                            label="Firstname"
+                            value={ this.props.user.firstname }
+                            onChangeText={ value => this.props.emailChanged(value) }
+                        />
+
+                        <TextField
+                            editable={ false }
+                            label="Lastname"
+                            value={ this.props.user.lastname }
+                            onChangeText={ value => this.props.emailChanged(value) }
+                        />
+
+                        <TextField
+                            editable={ false }
+                            label="Added on"
+                            value={ this.props.user.created_at }
                             onChangeText={ value => this.props.emailChanged(value) }
                         />
                     </ScrollView>
@@ -26,8 +52,8 @@ class AccountScreen extends Component {
 }
 
 const mapStateToProps = state => {
-    const { email, password } = state.auth;
-    return { email, password };
+    const { user } = state.auth;
+    return { user };
 };
 
 export default connect(mapStateToProps, { emailChanged, passwordChanged })(AccountScreen);
