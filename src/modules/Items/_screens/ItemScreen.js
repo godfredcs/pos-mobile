@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
 import { connect } from 'react-redux';
 import { Styles } from '../../../globals';
 import { AddButton } from '../../../components';
 import { AddItemModal } from '../_components';
 import { getAllItems, selectItem } from '../_store/Actions';
+import { Ionicons } from '@expo/vector-icons';
 
 class ItemScreen extends Component {
     state = { showAddItemModal: false };
 
     componentDidMount() {
         this.props.getAllItems();
+    }
+
+    componentDidUpdate() {
+        LayoutAnimation.spring();
     }
 
     /**
@@ -39,9 +44,11 @@ class ItemScreen extends Component {
     renderItems = () => {
         return this.props.items.map(item => (
             <TouchableOpacity key={ item.id } style={ styles.row } onPress={() => this.itemPress(item)}>
-                <Text>{ item.name }</Text>
+                <Text style={{ fontSize: 18 }}>{ item.name }</Text>
+
+                <Ionicons name="ios-arrow-forward" size={ 20 } color="#CCC" />
             </TouchableOpacity>
-        ))
+        ));
     }
 
     /**
@@ -59,9 +66,9 @@ class ItemScreen extends Component {
         return (
             <View style={ Styles.container }>
 
-                <View>
+                <ScrollView contentContainerStyle={{ flex: 1 }} showsVerticalScrollIndicator={ false }>
                     { this.renderItems() }
-                </View>
+                </ScrollView>
 
                 <AddButton
                     onPress={ this.showAddItemModal }
@@ -77,10 +84,13 @@ class ItemScreen extends Component {
 
 const styles = StyleSheet.create({
     row: {
-        paddingVertical: 10,
+        paddingVertical: 15,
         borderBottomWidth: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
         paddingHorizontal: 20,
-        borderBottomColor: '#CCC'
+        borderBottomColor: '#CCC',
+        justifyContent: 'space-between'
     }
 });
 
