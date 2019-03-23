@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, StyleSheet, LayoutAnimation } from 'react-native';
 import { connect } from 'react-redux';
 import { Styles, Helpers, Colors } from '../../../globals';
+import { CommonInput } from '../../../components';
 
 class ItemViewScreen extends Component {
+    state = { showEditForm: false, showDeleteForm: false };
+
     isAdmin = () => {
         if (this.props.user && this.props.user.role) {
             if (this.props.user.role.name === 'admin') {
@@ -14,6 +17,10 @@ class ItemViewScreen extends Component {
         return false;
     }
 
+    componentDidUpdate() {
+        LayoutAnimation.spring();
+    }
+
     renderSelected = () => {
         if (!this.props.selected_item) {
             return null;
@@ -22,35 +29,36 @@ class ItemViewScreen extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <View style={ styles.card }>
-                    <View>
-                        <Text>Quantity: <Text>{ this.props.selected_item.quantity }</Text></Text>
-                    </View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginVertical: 20 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 20 }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 30 }}>{ this.props.selected_item.name }</Text>
 
                         {
-                            this.isAdmin()
-                                ? <TouchableOpacity onPress={() => {}}>
-                                    <Text style={{ color: '#FF9900', fontSize: 20 }}>Edit</Text>
+                            !this.isAdmin() || this.state.showDeleteForm
+                                ? null
+                                : <TouchableOpacity onPress={ () => this.setState(state => ({ showEditForm: !state.showEditForm })) }>
+                                    <Text style={{ color: '#FF9900', fontSize: 20 }}>{ !this.state.showEditForm ? 'Edit' : 'Cancel' }</Text>
                                 </TouchableOpacity>
-                                : null
                         }
 
                         {
-                            this.isAdmin()
-                                ? <TouchableOpacity onPress={() => {}}>
-                                    <Text style={{ color: '#F00', fontSize: 20 }}>Delete</Text>
+                            !this.isAdmin() || this.state.showEditForm
+                                ? null
+                                : <TouchableOpacity onPress={ () => this.setState(state => ({ showDeleteForm: !state.showDeleteForm })) }>
+                                    <Text style={{ color: '#F00', fontSize: 20 }}>{ !this.state.showDeleteForm ? 'Delete' : 'Cancel' }</Text>
                                 </TouchableOpacity>
-                                : null
-
                         }
 
                     </View>
 
                     <View style={{ justifyContent: 'space-between', alignItems: 'baseline', flexDirection: 'row' }}>
-                        <Text>Whole price: <Text>{ Helpers.formattedCedis(this.props.selected_item.whole_price) }</Text></Text>
-                        <Text>Unit price: <Text>{ Helpers.formattedCedis(this.props.selected_item.unit_price) }</Text></Text>
+                        <Text>Quantity: <Text style={{ fontWeight: 'bold' }}>{ this.props.selected_item.quantity }</Text></Text>
+                        <Text>Unit price: <Text style={{ fontWeight: 'bold' }}>{ Helpers.formattedCedis(this.props.selected_item.unit_price) }</Text></Text>
+                    </View>
+
+                    <View>
+                        { this.editItem() }
+                        { this.deleteItem() }
                     </View>
                 </View>
 
@@ -87,6 +95,57 @@ class ItemViewScreen extends Component {
         );
     }
 
+    editItem = () => {
+        if (this.state.showEditForm) {
+            return (
+                <View style={{ padding: 20 }}>
+                    <CommonInput
+                        label="Name"
+                        value={ this.props.item_name }
+                        onChangeText={ value => this.props.itemNameChanged(value) }
+                    />
+
+                    <CommonInput
+                        label="Quantity"
+                        value={ this.props.item_quantity }
+                        onChangeText={ value => this.props.itemQuantityChanged(value) }
+                    />
+
+                    <CommonInput
+                        label="Unit price"
+                        value={ this.props.item_unit_price }
+                        onChangeText={ value => this.props.itemUnitPriceChanged(value) }
+                    />
+                </View>
+            );
+        }
+
+        return null;
+    }
+
+    deleteItem = () => {
+        if (this.state.showDeleteForm) {
+            return (
+                <View style={{ padding: 20 }}>
+                    <Text style={{ textAlign: 'center', marginVertical: 20, fontSize: 18 }}>
+                        { `Are you sure you want to delete ${ this.props.selected_item.name } ?` }
+                    </Text>
+
+                    <View>
+                        <TouchableOpacity
+                            onPress={() => console.log('null')}
+                            style={{ backgroundColor: '#F00', paddingVertical: 5, paddingHorizontal: 50, alignSelf: 'center', borderRadius: 30 }}
+                        >
+                            <Text style={{ textAlign: 'center', color: '#FFF', fontWeight: 'bold', fontSize: 18 }}>DELETE</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            );
+        }
+
+        return null;
+    }
+
     render() {
         return (
             <View style={ Styles.container }>
@@ -111,10 +170,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-    const { selected_item } = state.items;
+    const { selected_item, item_name, item_quantity, item_unit_price } = state.items;
     const { user } = state.auth;
 
-    return { selected_item, user };
+    return { selected_item, item_name, item_quantity, item_unit_price, user };
 }
 
 export default connect(mapStateToProps)(ItemViewScreen);
