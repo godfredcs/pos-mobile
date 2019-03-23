@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { KeyboardAvoidingView, Keyboard, ScrollView, View, Text, TouchableWithoutFeedback } from 'react-native';
+import { KeyboardAvoidingView, Keyboard, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield';
-import { Styles } from '../../../globals';
+import { Styles, Helpers } from '../../../globals';
 import { emailChanged, passwordChanged } from '../_store/Actions';
 
 class AccountScreen extends Component {
@@ -41,7 +41,7 @@ class AccountScreen extends Component {
                         <TextField
                             editable={ false }
                             label="Added on"
-                            value={ this.props.user.created_at }
+                            value={ Helpers.formattedDateTime(this.props.user.created_at) }
                             onChangeText={ value => this.props.emailChanged(value) }
                         />
                     </ScrollView>
