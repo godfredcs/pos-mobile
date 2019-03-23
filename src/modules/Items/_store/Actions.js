@@ -3,7 +3,7 @@ import {
     ATTEMPT_GETTING_ITEMS, GET_ITEMS_SUCCESS, GET_ITEMS_FAIL,
     ATTEMPT_GETTING_ITEM, GET_ITEM_SUCCESS, GET_ITEM_FAIL,
     ITEM_SELECTED,
-    ITEM_NAME_CHANGED, ITEM_QUANTITY_CHANGED, ITEM_UNIT_PRICE_CHANGED, ITEM_WHOLE_PRICE_CHANGED
+    ITEM_NAME_CHANGED, ITEM_QUANTITY_CHANGED, ITEM_UNIT_PRICE_CHANGED, ITEM_WHOLE_PRICE_CHANGED, ADD_ITEM_FAIL, ATTEMPT_ADDING_ITEM, ADD_ITEM_SUCCESS
 } from './Types';
 
 /**
@@ -80,3 +80,28 @@ export const getItem = id => async dispatch => {
  * @param {Object} item
  */
 export const selectItem = item => ({ type: ITEM_SELECTED, payload: item });
+
+/**
+ * Action Creator - For adding an item to the database
+ *
+ * @param {Object} data
+ * @param {Function} callback
+ */
+export const addItem = (data, callback) => async dispatch => {
+    try {
+        dispatch({ type: ATTEMPT_ADDING_ITEM });
+
+        const item = await Item.store(data);
+
+        if (item) {
+            dispatch({ type: ADD_ITEM_SUCCESS, payload: item });
+
+            if (callback) {
+                callback();
+            }
+        }
+    } catch (error) {
+        console.log('this is the error from adding an item: ', error);
+        dispatch({ type: ADD_ITEM_FAIL, payload: error });
+    }
+}
