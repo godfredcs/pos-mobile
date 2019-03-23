@@ -2,7 +2,7 @@ import {
     ATTEMPT_GETTING_ITEMS, GET_ITEMS_FAIL, GET_ITEMS_SUCCESS,
     ITEM_SELECTED,
     ATTEMPT_ADDING_ITEM, ADD_ITEM_FAIL, ADD_ITEM_SUCCESS,
-    ITEM_NAME_CHANGED, ITEM_QUANTITY_CHANGED, ITEM_UNIT_PRICE_CHANGED, ITEM_WHOLE_PRICE_CHANGED
+    ITEM_NAME_CHANGED, ITEM_QUANTITY_CHANGED, ITEM_UNIT_PRICE_CHANGED
 } from './Types';
 
 const INITIAL_STATE = {
@@ -12,7 +12,6 @@ const INITIAL_STATE = {
     item_quantity: '',
     selected_item: null,
     item_unit_price: '',
-    item_whole_price: '',
     attempt_adding_item: false,
     attempt_getting_items: false
 };
@@ -27,9 +26,6 @@ export default (state=INITIAL_STATE, action) => {
 
         case ITEM_UNIT_PRICE_CHANGED:
             return { ...state, item_unit_price: action.payload };
-
-        case ITEM_WHOLE_PRICE_CHANGED:
-            return { ...state, item_whole_price: action.payload };
 
         case ATTEMPT_GETTING_ITEMS:
             return { ...state, items_error: '', attempt_getting_items: true };
