@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 import Axios from 'axios';
 
 const wifi = '192.168.8.107';
-const phone = '';
+const phone = '172.20.10.6';
 
 const baseURL = `http://${wifi}:5000`;
 
